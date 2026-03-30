@@ -75,21 +75,21 @@ require("lazy").setup({
     "wellle/targets.vim",
   },
 
-  -- Sneak - s + 2 chars, jumps immediately, ; and , to repeat
-  {
-    "justinmk/vim-sneak",
-    lazy = false,
-    config = function()
-      vim.cmd([[
-        map s <Plug>Sneak_s
-        map S <Plug>Sneak_S
-        map f <Plug>Sneak_f
-        map F <Plug>Sneak_F
-        map t <Plug>Sneak_t
-        map T <Plug>Sneak_T
-      ]])
-    end,
-  },
+  -- Sneak - commented out, using Flash for s/S instead
+  -- {
+  --   "justinmk/vim-sneak",
+  --   lazy = false,
+  --   config = function()
+  --     vim.cmd([[
+  --       map s <Plug>Sneak_s
+  --       map S <Plug>Sneak_S
+  --       map f <Plug>Sneak_f
+  --       map F <Plug>Sneak_F
+  --       map t <Plug>Sneak_t
+  --       map T <Plug>Sneak_T
+  --     ]])
+  --   end,
+  -- },
 
   -- Flash - enhanced search with labels on / and ?
   {
@@ -102,7 +102,8 @@ require("lazy").setup({
       },
     },
     keys = {
-      { "<leader>s", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash jump" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
     },
   },
 
@@ -221,12 +222,31 @@ if vim.g.vscode then
   -- utils / important
   map('n', '<leader>r', function() vim.fn.VSCodeNotify('editor.action.rename') end, opts)
 
-  -- go to
-  map('n', '<leader>gd', function() vim.fn.VSCodeNotify('editor.action.revealDefinition') end, opts)
-  map('n', '<leader>gt', function() vim.fn.VSCodeNotify('editor.action.goToTypeDefinition') end, opts)
-  map('n', '<leader>gi', function() vim.fn.VSCodeNotify('editor.action.goToImplementation') end, opts)
-  map('n', '<leader>gr', function() vim.fn.VSCodeNotify('editor.action.goToReferences') end, opts)
+  -- LSP direct mappings (AstroNvim-style)
+  map('n', 'K', function() vim.fn.VSCodeNotify('editor.action.showHover') end, opts)
+  map('n', 'gd', function() vim.fn.VSCodeNotify('editor.action.revealDefinition') end, opts)
+  map('n', 'gD', function() vim.fn.VSCodeNotify('editor.action.revealDeclaration') end, opts)
+  map('n', 'gi', function() vim.fn.VSCodeNotify('editor.action.goToImplementation') end, opts)
   map('n', 'grr', function() vim.fn.VSCodeNotify('editor.action.goToReferences') end, opts)
+  map('n', 'grn', function() vim.fn.VSCodeNotify('editor.action.rename') end, opts)
+  map('n', 'gra', function() vim.fn.VSCodeNotify('editor.action.quickFix') end, opts)
+  map('n', 'gri', function() vim.fn.VSCodeNotify('editor.action.goToImplementation') end, opts)
+  map('n', 'grt', function() vim.fn.VSCodeNotify('editor.action.goToTypeDefinition') end, opts)
+  map('n', '[d', function() vim.fn.VSCodeNotify('editor.action.marker.prev') end, opts)
+  map('n', ']d', function() vim.fn.VSCodeNotify('editor.action.marker.next') end, opts)
+
+  -- LSP leader group (AstroNvim-style <leader>l)
+  map('n', '<leader>la', function() vim.fn.VSCodeNotify('editor.action.quickFix') end, opts)
+  map('n', '<leader>ld', function() vim.fn.VSCodeNotify('editor.action.showHover') end, opts)
+  map('n', '<leader>lD', function() vim.fn.VSCodeNotify('workbench.actions.view.problems') end, opts)
+  map('n', '<leader>lf', function() vim.fn.VSCodeNotify('editor.action.formatDocument') end, opts)
+  map('n', '<leader>lh', function() vim.fn.VSCodeNotify('editor.action.triggerParameterHints') end, opts)
+  map('n', '<leader>li', function() vim.fn.VSCodeNotify('workbench.action.showAllSymbols') end, opts)
+  map('n', '<leader>lr', function() vim.fn.VSCodeNotify('editor.action.rename') end, opts)
+  map('n', '<leader>ls', function() vim.fn.VSCodeNotify('workbench.action.gotoSymbol') end, opts)
+  map('n', '<leader>lS', function() vim.fn.VSCodeNotify('outline.focus') end, opts)
+
+  -- go to (extras)
   map('n', '<leader>ge', function() vim.fn.VSCodeNotify('workbench.files.action.showActiveFileInExplorer') end, opts)
   map('n', '<leader>gf', function() vim.fn.VSCodeNotify('workbench.action.compareEditor.openSide') end, opts)
   
@@ -243,6 +263,7 @@ if vim.g.vscode then
   map('n', '<leader>fk', function() vim.fn.VSCodeNotify('workbench.action.openGlobalKeybindings') end, opts)
   map('n', '<leader>fs', function() vim.fn.VSCodeNotify('workbench.action.gotoSymbol') end, opts)
   map('n', '<leader>fS', function() vim.fn.VSCodeNotify('workbench.action.showAllSymbols') end, opts)
+  map('n', '<leader>fp', function() vim.fn.VSCodeNotify('projectManager.listProjects') end, opts)
   
   -- When running under vscode-neovim, toggle the VS Code cursor style
   local ok, vscode = pcall(require, 'vscode')
