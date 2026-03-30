@@ -1,0 +1,13 @@
+{
+  "ReplaceWithRegister": { "branch": "master", "commit": "832efc23111d19591d495dc72286de2fb0b09345" },
+  "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
+  "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
+  "nvim-surround": { "branch": "main", "commit": "5553dd1fbb3559abb176a8227a12e8f1cab07e93" },
+  "nvim-tree.lua": { "branch": "master", "commit": "c8d8d515c29f0f0b1a352e0d75616f74f42fc03b" },
+  "nvim-treesitter": { "branch": "main", "commit": "cfc6f2c117aaaa82f19bcce44deec2c194d900ab" },
+  "nvim-treesitter-textobjects": { "branch": "master", "commit": "5ca4aaa6efdcc59be46b95a3e876300cfead05ef" },
+  "nvim-web-devicons": { "branch": "master", "commit": "737cf6c657898d0c697311d79d361288a1343d50" },
+  "targets.vim": { "branch": "master", "commit": "6325416da8f89992b005db3e4517aaef0242602e" },
+  "vim-highlightedyank": { "branch": "master", "commit": "285a61425e79742997bbde76a91be6189bc988fb" },
+  "vim-sneak": { "branch": "master", "commit": "feea86adcfbf8e6b5e71fdd5f4f5736fd8819fdb" }
+}
