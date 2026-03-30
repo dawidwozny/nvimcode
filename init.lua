@@ -231,7 +231,15 @@ if vim.g.vscode then
   map('n', '<leader>gf', function() vim.fn.VSCodeNotify('workbench.action.compareEditor.openSide') end, opts)
   
 
+  -- find / search (AstroVim-style <leader>f group)
   map('n', '<leader>ff', function() vim.fn.VSCodeNotify('workbench.action.quickOpen') end, opts)
+  map('n', '<leader>fw', function() vim.fn.VSCodeNotify('workbench.action.findInFiles') end, opts)
+  map('n', '<leader>fb', function() vim.fn.VSCodeNotify('workbench.action.showAllEditors') end, opts)
+  map('n', '<leader>fo', function() vim.fn.VSCodeNotify('workbench.action.openRecent') end, opts)
+  map('n', '<leader>fc', function() vim.fn.VSCodeNotify('workbench.action.showCommands') end, opts)
+  map('n', '<leader>fk', function() vim.fn.VSCodeNotify('workbench.action.openGlobalKeybindings') end, opts)
+  map('n', '<leader>fs', function() vim.fn.VSCodeNotify('workbench.action.gotoSymbol') end, opts)
+  map('n', '<leader>fS', function() vim.fn.VSCodeNotify('workbench.action.showAllSymbols') end, opts)
   
   -- When running under vscode-neovim, toggle the VS Code cursor style
   local ok, vscode = pcall(require, 'vscode')
