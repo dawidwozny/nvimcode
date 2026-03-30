@@ -280,10 +280,42 @@ if vim.g.vscode then
   end
 
   -- Force Normal mode when entering a buffer in VSCode Neovim (prevents unwanted Visual mode)
-  local function leave_visual_if_needed()
-    vim.cmd("stopinsert")
-    if vim.fn.mode():find("[vV\22]") then
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+  local esc = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
+
+  local function escape_visual()
+    local mode = vim.fn.mode()
+    if mode:find("[vV\22]") then
+      vim.api.nvim_feedkeys(esc, "n", false)
     end
   end
+
+  -- Track whether visual mode was entered by the user (v/V/Ctrl-V keys)
+  local user_visual = false
+  vim.keymap.set("n", "v", function() user_visual = true return "v" end, { expr = true })
+  vim.keymap.set("n", "V", function() user_visual = true return "V" end, { expr = true })
+  vim.keymap.set("n", "<C-v>", function() user_visual = true return "<C-v>" end, { expr = true })
+
+  -- Whenever visual mode is entered NOT by the user, escape it
+  vim.api.nvim_create_autocmd("ModeChanged", {
+    pattern = "*:[vV\x16]*",
+    callback = function()
+      if user_visual then
+        user_visual = false
+        return
+      end
+      vim.schedule(function() escape_visual() end)
+    end,
+  })
+
+  -- Belt-and-suspenders: also escape on buffer/window entry with staggered delays
+  vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter", "FocusGained" }, {
+    callback = function()
+      user_visual = false
+      for _, ms in ipairs({ 20, 80, 200 }) do
+        vim.defer_fn(function()
+          if not user_visual then escape_visual() end
+        end, ms)
+      end
+    end,
+  })
 end
