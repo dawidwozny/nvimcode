@@ -195,22 +195,22 @@ if vim.g.vscode then
   -- markdown preview
   map('n', '<leader>kp', function() vim.fn.VSCodeNotify('markdown.showPreview') end, opts)
 
-  -- debug
-  map('n', '<leader>dt', function() vim.fn.VSCodeNotify('editor.debug.action.toggleBreakpoint') end, opts)
-  map('n', '<leader>ds', function() vim.fn.VSCodeNotify('workbench.action.debug.start') end, opts) -- debug start
+  -- debug (AstroNvim-style <leader>d group)
+  map('n', '<leader>db', function() vim.fn.VSCodeNotify('editor.debug.action.toggleBreakpoint') end, opts)
+  map('n', '<leader>dB', function() vim.fn.VSCodeNotify('workbench.debug.viewlet.action.removeAllBreakpoints') end, opts)
   map('n', '<leader>dc', function() vim.fn.VSCodeNotify('workbench.action.debug.continue') end, opts)
-  map('n', '<leader>de', function() vim.fn.VSCodeNotify('workbench.action.debug.stop') end, opts) -- debug end
+  map('n', '<leader>dS', function() vim.fn.VSCodeNotify('workbench.action.debug.start') end, opts)
+  map('n', '<leader>dC', function() vim.fn.VSCodeNotify('editor.debug.action.conditionalBreakpoint') end, opts)
   map('n', '<leader>di', function() vim.fn.VSCodeNotify('workbench.action.debug.stepInto') end, opts)
   map('n', '<leader>do', function() vim.fn.VSCodeNotify('workbench.action.debug.stepOver') end, opts)
-  -- map('n', '<leader>dr', function() vim.fn.VSCodeNotify('workbench.action.debug.run') end, opts)
-
-  -- --breakpoint
-  -- Go to next/previous breakpoint
-  map('n', '<leader>bn', function() vim.fn.VSCodeNotify('editor.debug.action.goToNextBreakpoint') end, opts)
-  map('n', '<leader>bp', function() vim.fn.VSCodeNotify('editor.debug.action.goToPreviousBreakpoint') end, opts)
-  map('n', '<leader>be', function() vim.fn.VSCodeNotify('workbench.debug.viewlet.action.enableAllBreakpoints') end, opts)
-  map('n', '<leader>bd', function() vim.fn.VSCodeNotify('workbench.debug.viewlet.action.disableAllBreakpoints') end, opts)
-  map('n', '<leader>bt', function() vim.fn.VSCodeNotify('editor.debug.action.toggleBreakpoint') end, opts)
+  map('n', '<leader>dO', function() vim.fn.VSCodeNotify('workbench.action.debug.stepOut') end, opts)
+  map('n', '<leader>dp', function() vim.fn.VSCodeNotify('workbench.action.debug.pause') end, opts)
+  map('n', '<leader>dr', function() vim.fn.VSCodeNotify('workbench.action.debug.restart') end, opts)
+  map('n', '<leader>ds', function() vim.fn.VSCodeNotify('workbench.action.debug.stop') end, opts)
+  map('n', '<leader>du', function() vim.fn.VSCodeNotify('workbench.view.debug') end, opts)
+  map('n', '<leader>dl', function() vim.fn.VSCodeNotify('workbench.debug.action.toggleRepl') end, opts)
+  map('n', '<leader>de', function() vim.fn.VSCodeNotify('editor.debug.action.selectionToWatch') end, opts)
+  map('n', '<leader>df', function() vim.fn.VSCodeNotify('editor.debug.action.runToCursor') end, opts)
 
   -- test
   map('n', '<leader>tt', function() vim.fn.VSCodeNotify('testing.debugAtCursor') end, opts)
@@ -230,6 +230,9 @@ if vim.g.vscode then
   map('n', '<leader>ge', function() vim.fn.VSCodeNotify('workbench.files.action.showActiveFileInExplorer') end, opts)
   map('n', '<leader>gf', function() vim.fn.VSCodeNotify('workbench.action.compareEditor.openSide') end, opts)
   
+
+  -- sidebar
+  map('n', '<leader>e', function() vim.fn.VSCodeNotify('workbench.view.explorer') end, opts)
 
   -- find / search (AstroVim-style <leader>f group)
   map('n', '<leader>ff', function() vim.fn.VSCodeNotify('workbench.action.quickOpen') end, opts)
