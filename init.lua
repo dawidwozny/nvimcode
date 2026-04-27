@@ -251,12 +251,28 @@ if vim.g.vscode then
   map('n', '<leader>gf', function() vim.fn.VSCodeNotify('workbench.action.compareEditor.openSide') end, opts)
   
 
+  -- buffer management (AstroNvim-style <leader>b group)
+  map('n', '<leader>bc', function() vim.fn.VSCodeNotify('workbench.action.closeOtherEditors') end, opts)
+  map('n', '<leader>bC', function() vim.fn.VSCodeNotify('workbench.action.closeAllEditors') end, opts)
+  map('n', '<leader>bd', function() vim.fn.VSCodeNotify('workbench.action.closeActiveEditor') end, opts)
+  map('n', '<leader>bl', function() vim.fn.VSCodeNotify('workbench.action.closeEditorsToTheLeft') end, opts)
+  map('n', '<leader>br', function() vim.fn.VSCodeNotify('workbench.action.closeEditorsToTheRight') end, opts)
+  map('n', '<leader>bp', function() vim.fn.VSCodeNotify('workbench.action.previousEditor') end, opts)
+  map('n', '<leader>bn', function() vim.fn.VSCodeNotify('workbench.action.nextEditor') end, opts)
+  -- map('n', '<leader>bb', function() vim.fn.VSCodeNotify('workbench.action.openPreviousRecentlyUsedEditor') end, opts)
+  -- map('n', '<leader>bse', function() vim.fn.VSCodeNotify('workbench.action.openEditorAtIndex') end, opts)
+  -- map('n', '<leader>b\\', function() vim.fn.VSCodeNotify('workbench.action.splitEditor') end, opts)
+  -- map('n', '<leader>b|', function() vim.fn.VSCodeNotify('workbench.action.splitEditorOrthogonal') end, opts)
+  -- map('n', '<leader>bi', function() vim.fn.VSCodeNotify('workbench.action.pinEditor') end, opts)
+  -- map('n', '<leader>bI', function() vim.fn.VSCodeNotify('workbench.action.unpinEditor') end, opts)
+
   -- sidebar
   map('n', '<leader>e', function() vim.fn.VSCodeNotify('workbench.view.explorer') end, opts)
 
   -- find / search (AstroVim-style <leader>f group)
   map('n', '<leader>ff', function() vim.fn.VSCodeNotify('workbench.action.quickOpen') end, opts)
-  map('n', '<leader>fw', function() vim.fn.VSCodeNotify('workbench.action.findInFiles') end, opts)
+  map('n', '<leader>fW', function() vim.fn.VSCodeNotify('search.action.openEditor') end, opts)
+  map('n', '<leader>fw', function() vim.fn.VSCodeNotify('workbench.action.quickOpen', '% ') end, opts)
   map('n', '<leader>fb', function() vim.fn.VSCodeNotify('workbench.action.showAllEditors') end, opts)
   map('n', '<leader>fo', function() vim.fn.VSCodeNotify('workbench.action.openRecent') end, opts)
   map('n', '<leader>fc', function() vim.fn.VSCodeNotify('workbench.action.showCommands') end, opts)
